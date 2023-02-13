@@ -20,44 +20,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Custom middleware
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   req.context = {
     models,
-    me: models.users[1],
-    uuid: models.uuid,
+    me: await models.User.findByLogin("amroz"),
   };
   next();
 });
-
-// app.use((req, res, next) => {
-//     console.log(`Request: ${req.method} ${req.url}`);
-//     console.log(`Time: ${Date(Date.now())}`);
-
-//     req.me = users[1];
-//     console.log(`Custom middleware added hard coded user to request: ${req.me.username}}`);
-//     next();
-// });
 
 // Routes
 app.use("/session", routes.session);
 app.use("/users", routes.user);
 app.use("/messages", routes.message);
-
-app.get("/", (req, res) => {
-  return res.send("Received a GET HTTP method");
-});
-
-app.post("/", (req, res) => {
-  return res.send("Received a POST HTTP method");
-});
-
-app.put("/", (req, res) => {
-  return res.send("Received a PUT HTTP method");
-});
-
-app.delete("/", (req, res) => {
-  return res.send("Received a DELETE HTTP method");
-});
 
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {

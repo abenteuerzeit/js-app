@@ -8,6 +8,17 @@ const getUserModel = (sequelize, { DataTypes }) => {
         notEmpty: true,
       },
     },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      },
+    },
+    name: {
+      type: DataTypes.STRING,
+    },
   });
 
   User.associate = (models) => {

@@ -8,12 +8,12 @@ const randomInt = (min, max) =>
 
 const Settings = {
   minWords: randomInt(1, 2),
-  maxWords: randomInt(2, 20),
+  maxWords: randomInt(2, 100),
   totalWords: wordbank.length,
 };
 
 const _writeMessage = () => {
-  const messageLength = randomInt(1, 200);
+  const messageLength = randomInt(1, 150);
   const words = [];
   for (let i = 0; i < messageLength; i++) {
     const word = wordbank[randomInt(0, Settings.totalWords)];
@@ -28,7 +28,7 @@ const _writeMessage = () => {
 
 };
 
-const seedMessages = (n = Math.floor(Math.random() * 100)) => {
+const seedMessages = (n = 10) => {
   const messages = [];
   for (let i = 0; i < n; i++) {
     const message = { text: _writeMessage() };
