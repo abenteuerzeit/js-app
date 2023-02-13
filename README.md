@@ -23,6 +23,8 @@
 
 ## Route Examples
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/24015204-855b9297-280f-43f9-8260-d6e2d00f7c18?action=collection%2Ffork&collection-url=entityId%3D24015204-855b9297-280f-43f9-8260-d6e2d00f7c18%26entityType%3Dcollection%26workspaceId%3D4c3f7037-923e-4faa-a3fe-2a63c12c05d8)
+
 ### GET
 
     curl -X GET http://localhost:3000/users
