@@ -10,7 +10,7 @@ const createUsersWithMessages = async (n) => {
       password: 'password',
       name: 'Adrian Mroz',
       email: 'admin@localhost.com',
-      phone: '+14432169316',
+      phone: '+1(443)216-9316',
       birthday: new Date('1990-01-01'),
 
       messages: [{ text: 'Admin message'}],
@@ -25,11 +25,13 @@ const createUsersWithMessages = async (n) => {
     await models.User.create(
       {
         username: users[i].getEmail().split('@')[0],
-        name: users[i].getName(),
         password: users[i].getPassword(),
+        name: users[i].getName(),
         email: users[i].getEmail(),
-        messages: seedMessages(),
         phone: users[i].getPhone(),
+        birthday: users[i].getBirthday(),
+        
+        messages: seedMessages(),
       },
       {
         include: [models.Message],

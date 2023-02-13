@@ -18,6 +18,35 @@ const getUserModel = (sequelize, { DataTypes }) => {
     },
     name: {
       type: DataTypes.STRING,
+      unique: false,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    phone: {
+      type: DataTypes.STRING,
+      unique: false,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    }, 
+    birthday: {
+      type: DataTypes.DATE,
+      unique: false,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      unique: false,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
   });
 
