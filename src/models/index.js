@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 let users = {
     1: {
       id: '1',
@@ -25,4 +27,5 @@ let users = {
   export default {
     users,
     messages,
+    uuid: () => uuidv4(),
   };
