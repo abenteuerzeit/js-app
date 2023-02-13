@@ -11,7 +11,7 @@ const createUsersWithMessages = async (n) => {
       name: 'Adrian Mroz',
       email: 'admin@localhost.com',
       phone: '+1(443)216-9316',
-      birthday: new Date('1990-01-01'),
+      birthday: new Date('1988-05-18'),
 
       messages: [{ text: 'Admin message'}],
     }, 
@@ -30,7 +30,7 @@ const createUsersWithMessages = async (n) => {
         email: users[i].getEmail(),
         phone: users[i].getPhone(),
         birthday: users[i].getBirthday(),
-        
+
         messages: seedMessages(),
       },
       {

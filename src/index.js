@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(async (req, res, next) => {
   req.context = {
     models,
-    me: await models.User.findByLogin("amroz"),
+    me: await models.User.findByLogin("admin"),
   };
   next();
 });
