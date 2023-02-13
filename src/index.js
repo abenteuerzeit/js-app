@@ -36,7 +36,7 @@ app.use("/messages", routes.message);
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
-    const numberOfUsers = 5
+    const numberOfUsers = 99;
     createUsersWithMessages(numberOfUsers);
   }
   app.listen(PORT, () => {

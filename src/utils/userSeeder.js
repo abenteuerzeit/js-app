@@ -1,4 +1,4 @@
-import seeder from "./seeder/users";
+import seederAsync from "./seeder/users";
 import seedMessages from "./seeder/messages";
 
 import models from "../models";
@@ -20,7 +20,7 @@ const createUsersWithMessages = async (n) => {
     }
   );
 
-  const users = seeder(n);
+  const users = seederAsync(n);
   for (let i = 0; i < n; i++) {
     await models.User.create(
       {

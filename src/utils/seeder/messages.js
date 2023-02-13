@@ -3,32 +3,41 @@ import { nouns, colors, adjectives, loremIpsumArr } from "./_words";
 const loremWords = loremIpsumArr.join(" ").split(" ");
 const wordbank = [...nouns, ...colors, ...adjectives, ...loremWords];
 
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-
-const Settings = {
-  minWords: randomInt(1, 2),
-  maxWords: randomInt(2, 100),
+const _config = {
+  minWords: _randomInt(1, 2),
+  maxWords: _randomInt(2, 100),
+  words: wordbank,
   totalWords: wordbank.length,
 };
 
-const _writeMessage = () => {
-  const messageLength = randomInt(1, 150);
-  const words = [];
-  for (let i = 0; i < messageLength; i++) {
-    const word = wordbank[randomInt(0, Settings.totalWords)];
-    const currentLength = words.join(" ").length;
-    if (currentLength < messageLength) {
-      words.push(word);
-    } else {
-      break;
-    }
-  }
-  return words.join(" ");
-
+function _randomInt (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const seedMessages = (n = 10) => {
+const _writeMessage = () => {
+  const messageLength = _randomInt(1, 150);
+  const words = [];
+  for (let i = 0; i < messageLength; i++) {
+    const currentLength = words.join(" ").length;
+    if (currentLength > messageLength) {
+      break;
+    }
+    let word = _config.words[_randomInt(0, _config.totalWords - 1)].toLowerCase();
+    if (words.length === 0) {
+      word = word[0].toUpperCase() + word.slice(1);
+    }
+    if (words.length > 0) {
+      const lastWord = words[words.length - 1].toString();
+      if (lastWord.includes(".")) {
+        word = word[0].toUpperCase() + word.slice(1);
+      }
+    }
+    words.push(word);
+  }
+  return words.join(" ");
+};
+
+const seedMessages = (n = _randomInt(0, 10)) => {
   const messages = [];
   for (let i = 0; i < n; i++) {
     const message = { text: _writeMessage() };

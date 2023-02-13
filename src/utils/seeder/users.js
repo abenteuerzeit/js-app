@@ -183,7 +183,7 @@ const seeder = (num = 10) => {
 };
 
 export const get100UsersAsync = async () => seeder(100);
-export const seedUsersAsync = async () => seeder;
+export const seederAsync = async () => seeder;
 export const addAsync = async () => insertUserToDb;
 
 export default seeder
