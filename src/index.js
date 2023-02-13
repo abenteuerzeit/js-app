@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
+import models, { sequelize } from './models';
 import routes from './routes';
 
 // Hardcoded fake database
@@ -9,6 +10,7 @@ import models from './models';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const eraseDatabaseOnSync = true;
 
 // Third-party middleware
 app.use(cors()); 
@@ -59,6 +61,8 @@ app.delete('/', (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
+sequelize.sync().then(() => {
+    app.listen(PORT, () => {
+        console.log(`App listening on port ${PORT}`);
+    });
 });
