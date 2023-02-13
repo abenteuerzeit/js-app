@@ -5,21 +5,17 @@ import models, { sequelize } from "./models";
 import routes from "./routes";
 import createUsersWithMessages from "./utils/userSeeder";
 
-// Hardcoded fake database
-// import models from './models';
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const eraseDatabaseOnSync = process.env.ERASE_DATABASE_ON_SYNC || true;
 
-// Third-party middleware
 app.use(cors());
 
-// Built-in middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Custom middleware
+// TODO use session id to get user login
 app.use(async (req, res, next) => {
   req.context = {
     models,
@@ -36,7 +32,7 @@ app.use("/messages", routes.message);
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
-    const numberOfUsers = 99;
+    const numberOfUsers = process.env.NUMBER_OF_USERS || Math.floor(Math.random() * 100);
     createUsersWithMessages(numberOfUsers);
   }
   app.listen(PORT, () => {

@@ -15,6 +15,7 @@
     DATABASE_USER='db_username' # Username to connect to the database with
     DATABASE_PASSWORD='db_user_password' # Password to connect to the database with
     ERASE_DB_ON_SYNC=true # If true, erases the database on sync. It will not if false.
+    USERS_AMOUNT=100 # Amount of users to generate
 
 ## User and Messages
 
@@ -35,6 +36,22 @@ Each time the server starts, the database is regenerated.
 To change the database configuration, you can set the following environment variables:
 
     ERASE_DB_ON_SYNC=false
+
+To change how many users with random messages are generated, set the following environment variable to set the number of users to generate:
+
+    USERS_AMOUNT=10
+
+The server defaults to a random number of users between 1 and 100. The first generated user is hard coded to the following:
+
+    {
+        "id": 1,
+        "username": "admin",
+        "email": "admin@localhost.com",
+        "name": "Adrian Mroz",
+        "phone": "+1(443)216-9316",
+        "birthday": "1988-05-18T00:00:00.000Z",
+        "password": "password",
+    }
 
 And that is all you need to do to change the database configuration.
 
