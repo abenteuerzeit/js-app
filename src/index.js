@@ -10,7 +10,7 @@ import createUsersWithMessages from "./utils/userSeeder";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const eraseDatabaseOnSync = true;
+const eraseDatabaseOnSync = process.env.ERASE_DATABASE_ON_SYNC || true;
 
 // Third-party middleware
 app.use(cors());
